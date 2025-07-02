@@ -1,5 +1,15 @@
+import Banner from "../components/home/banner";
+import ReasonChoose from "../components/home/reasonChoose";
+import Header from "../layout/header";
+
 function Home() {
-  return <h1>หน้าแรก</h1>;
+  return (
+    <div>
+      <Header />
+      <Banner />
+      <ReasonChoose/>
+    </div>
+  );
 }
 
 export default Home;
