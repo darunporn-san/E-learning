@@ -31,66 +31,7 @@ const Banner = () => {
                   <span>Watch Demo</span>
                 </button>
               </div>
-            </div>
-          
-
-            {/* <div className="column is-6">
-              <div className="has-text-centered">
-                <div className="hero-illustration">
-                  <div className="person-avatar">
-                    <div className="person-inner">
-                      <div className="person-dot"></div>
-                    </div>
-                    <div className="graduation-cap"></div>
-                  </div>
-
-                  <div className="book-stack">
-                    <div className="book book-1"></div>
-                    <div className="book book-2"></div>
-                    <div className="book book-3"></div>
-                  </div>
-
-                  <div className="progress-bars">
-                    <div className="custom-progress">
-                      <div
-                        className="custom-progress-bar"
-                        style={{
-                          width: "75%",
-                          background:
-                            "linear-gradient(90deg, #667eea 0%, #764ba2 100%)",
-                        }}
-                      ></div>
-                    </div>
-                    <div className="custom-progress">
-                      <div
-                        className="custom-progress-bar"
-                        style={{
-                          width: "50%",
-                          background:
-                            "linear-gradient(90deg, #48cae4 0%, #0077b6 100%)",
-                        }}
-                      ></div>
-                    </div>
-                    <div className="custom-progress">
-                      <div
-                        className="custom-progress-bar"
-                        style={{
-                          width: "85%",
-                          background:
-                            "linear-gradient(90deg, #f72585 0%, #b5179e 100%)",
-                        }}
-                      ></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="floating-elements">
-                  <div className="floating-circle"></div>
-                  <div className="floating-circle"></div>
-                  <div className="floating-circle"></div>
-                </div>
-              </div>
-            </div> */}
+            </div>  
           </div>
         </div>
       </div>

@@ -67,9 +67,12 @@ const ReasonChoose = () => {
           {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
-              <div key={index} className="column is-4">
-                <div className={`card card-hover ${feature.background}`}>
-                  <div className="card-content ">
+      <div key={index}        className="column is-12-mobile is-6-tablet is-4-desktop is-flex"
+>
+                <div
+                  className={`card card-hover is-flex is-flex-direction-column is-fullheight ${feature.background}`}
+                >
+                  <div className="card-content" style={{ flexGrow: 1 }}>
                     <div className={`feature-icon ${feature.color}`}>
                       <Icon size={24} />
                     </div>

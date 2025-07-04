@@ -1,5 +1,5 @@
 @import "bulma/css/bulma.css";
-@import url('./App.css');
+@import url("./App.css");
 :root {
   --primary-gradient: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
   --card-shadow: 0 10px 25px rgba(108, 92, 231, 0.1);
@@ -270,7 +270,7 @@ body {
   justify-content: center;
   padding: 2rem 1rem;
 }
-.signup-container .input{
+.signup-container .input {
   padding-left: 3rem;
 }
 
@@ -461,8 +461,32 @@ body {
 
 .card-hover:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
+.course-image {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.play-button {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.play-button:hover {
+  transform: scale(1.1);
+}
+
 .feature-icon {
   width: 60px;
   height: 60px;
@@ -471,4 +495,59 @@ body {
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
+}
+
+.testimonial-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+/* Active navigation item styling */
+.navbar-item.is-active {
+  background-color: #00d1b2 !important;
+  color: white !important;
+  /* border-radius: 6px; */
+  margin: 0 4px;
+  transition: all 0.3s ease;
+}
+
+.navbar-item.is-active:hover {
+  background-color: #00b89c !important;
+  color: white !important;
+}
+
+/* Smooth transition for all navbar items */
+.navbar-item {
+  transition: all 0.3s ease;
+  /* border-radius: 6px; */
+  margin: 0 4px;
+}
+.navbar-item-logo {
+  display: flex;
+  align-items: center;
+  margin: 0 2rem 0 0;
+}
+.navbar-item:hover {
+  background-color: #f5f5f5;
+}
+
+@media screen and (max-width: 768px) {
+  /* Mobile active state */
+  .navbar-item.is-active {
+    margin: 4px 0;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .navbar-item-logo {
+
+    margin: 0 2rem;
+  }
 }
