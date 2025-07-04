@@ -1,5 +1,6 @@
 @import "bulma/css/bulma.css";
 @import url("./App.css");
+@import url("./styles/course-detail.css");
 :root {
   --primary-gradient: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
   --card-shadow: 0 10px 25px rgba(108, 92, 231, 0.1);
@@ -7,6 +8,18 @@
   --success-color: #10b981;
   --warning-color: #f59e0b;
   --danger-color: #ef4444;
+    --primary-color: #8b5cf6;
+  --primary-hover: #7c3aed;
+  --secondary-color: #a78bfa;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  --dark-color: #1f2937;
+  --light-color: #f9fafb;
+  --background-color: #f3f4f6;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --border-color: #e5e7eb;
 }
 * {
   box-sizing: border-box;

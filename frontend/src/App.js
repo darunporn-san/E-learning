@@ -12,6 +12,7 @@ import Register from "./pages/Register";
 import AllCourses from "./pages/AllCourse";
 import Header from "./layout/header";
 import Footer from "./layout/footer";
+import CourseDetail from "./pages/CourseDetail";
 
 function AppWrapper() {
   const location = useLocation();
@@ -35,13 +36,12 @@ function AppWrapper() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/course-list" element={<AllCourses />} />
+          <Route path="/course/:id" element={<CourseDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
 
-      {shouldShowHeader && (
-        <Footer />
-      )}
+      {shouldShowHeader && <Footer />}
     </div>
   );
 }

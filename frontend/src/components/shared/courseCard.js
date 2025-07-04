@@ -1,4 +1,6 @@
 import { Star, Clock, Users, Play } from "lucide-react";
+import { Link } from "react-router-dom";
+
 const CourseCard = ({ course }) => {
   return (
     <div className="card card-hover is-flex is-flex-direction-column is-fullheight">
@@ -58,7 +60,12 @@ const CourseCard = ({ course }) => {
           <span className="has-text-weight-semibold">{course.instructor}</span>
         </p>
 
-        <button className="button is-primary is-fullwidth has-text-white">Enroll Now</button>
+        <Link
+          to={`/course/${course.id}`}
+          className="button is-primary is-fullwidth has-text-white"
+        >
+          View Detail
+        </Link>
       </div>
     </div>
   );

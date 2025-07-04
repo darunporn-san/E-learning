@@ -1,5 +1,3 @@
-import React from "react";
-import { Star, Clock, Users, Play } from "lucide-react";
 import { Link } from 'react-router-dom';
 import CourseCard from "../shared/courseCard";
 
