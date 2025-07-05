@@ -1,5 +1,6 @@
 import React from "react";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -18,20 +19,14 @@ const Banner = () => {
                 e-learning designed for modern learners.
               </p>
               <div className="buttons">
-                <button className="button is-warning is-large">
+                <Link to="/course-list" className="button is-warning is-large">
                   <span>Start Learning</span>
                   <span className="icon">
                     <ArrowRight size={20} />
                   </span>
-                </button>
-                <button className="button is-light is-large is-outlined">
-                  <span className="icon">
-                    <Play size={20} />
-                  </span>
-                  <span>Watch Demo</span>
-                </button>
+                </Link>
               </div>
-            </div>  
+            </div>
           </div>
         </div>
       </div>
