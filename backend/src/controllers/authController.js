@@ -2,36 +2,48 @@ const supabase = require("../config/supabaseClient");
 
 // Register
 exports.register = async (req, res) => {
-  const { email, password, firstName, lastName } = req.body;
+  const { email, password, firstName, lastName, role } = req.body;
+  console.log("register", email, password, firstName, lastName, role);
+  const roleValue = role ?? 'student';
 
   const { data, error } = await supabase.auth.admin.createUser({
     email,
     password,
-    user_metadata: { firstName, lastName },
+    user_metadata: { firstName, lastName, role: roleValue},
     email_confirm: true,
   });
-
-  if (error) return res.status(400).json({ error: error.message });
-
-  const userId = data.user.id; // ได้ user id ที่สร้างมา
-
-  // insert ลง table profiles ด้วย user id
-  const { error: profileError } = await supabase.from("profiles").insert([
-    {
-      id: userId, // ต้องตรงกับ auth.users.id
-      first_name: firstName,
-      last_name: lastName,
-    },
-  ]);
-
-  if (profileError) {
-    return res.status(400).json({ error: profileError.message });
+  if (error) {
   }
-
   res.json({ message: "User created", user: data });
 };
 
 // Login
 exports.login = async (req, res) => {
-  console.log("login", req.body);
+  const { email, password } = req.body;
+
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
+    console.error("Login failed  :", error.message);
+    return;
+  }
+
+  const user = data.user;
+
+  const { error: updateError } = await supabase
+    .from("profiles")
+    .update({ last_login: new Date().toISOString() })
+    .eq("id", user.id);
+
+  if (updateError) {
+    console.error("Failed to update last_login: ", updateError.message);
+  } else {
+    res.json({ message: "Login successful & last_login updated.", user: data });
+  }
 };
+
+//Forget Password
+exports.forgetPassword = async (req, res) => {};
