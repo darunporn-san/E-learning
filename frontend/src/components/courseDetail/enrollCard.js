@@ -1,21 +1,5 @@
 import React from "react";
-import { Clock, PlayCircle, User, Globe, Award } from "lucide-react";
-
-const courseDetails = [
-  { icon: <Clock size={16} />, label: "Duration", value: "40 hours" },
-  { icon: <PlayCircle size={16} />, label: "Lessons", value: "156 videos" },
-  { icon: <User size={16} />, label: "Level", value: "Beginner" },
-  { icon: <Globe size={16} />, label: "Language", value: "English" },
-  { icon: <Award size={16} />, label: "Certificate", value: "Yes" },
-];
-
-const courseIncludes = [
-  "40+ hours video",
-  "35 articles",
-  "Downloadable resources",
-  "Full lifetime access",
-  "Certificate of completion",
-];
+import { courseDetails, courseIncludes } from "../../utils/data";
 
 const EnrollCard = () => {
   return (

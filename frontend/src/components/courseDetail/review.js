@@ -1,75 +1,65 @@
-import { Star, ThumbsUp, MessageCircle, MoreHorizontal, Filter, Send } from 'lucide-react';
-import React, { useState } from 'react';
+import {
+  Star,
+  ThumbsUp,
+  MessageCircle,
+  MoreHorizontal,
+  Filter,
+  Send,
+} from "lucide-react";
+import React, { useState } from "react";
+import { ratingDistribution, reviews } from "../../utils/data";
 
-const Review = () =>{
-     const [selectedRating, setSelectedRating] = useState('all');
+const Review = () => {
+  const [selectedRating, setSelectedRating] = useState("all");
   const [userRating, setUserRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
-  const [reviewText, setReviewText] = useState('');
+  const [reviewText, setReviewText] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const reviews = [
-    {
-      id: 1,
-      name: 'Alex Johnson',
-      rating: 5,
-      time: '2 days ago',
-      comment: 'Excellent course! The instructor explains everything clearly and the projects are very practical. I feel confident in my web development skills now. The step-by-step approach and real-world examples made all the difference.',
-      avatar: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1',
-      helpful: 24,
-    },
-    {
-      id: 2,
-      name: 'Sarah Williams',
-      rating: 5,
-      time: '1 week ago',
-      comment: 'Amazing content and structure. The step-by-step approach made learning so much easier. Highly recommend! The projects are challenging but achievable.',
-      avatar: 'https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1',
-      helpful: 18,
-    },
-    {
-      id: 3,
-      name: 'Michael Chen',
-      rating: 4,
-      time: '2 weeks ago',
-      comment: 'Great course overall. The content is comprehensive and well-organized. Some sections could use more examples, but the instructor is knowledgeable.',
-      avatar: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1',
-      helpful: 12,
-    }
-  ];
+  const [visibleReviews, setVisibleReviews] = useState(3);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const ratingDistribution = [
-    { stars: 5, count: 856, percentage: 69 },
-    { stars: 4, count: 234, percentage: 19 },
-    { stars: 3, count: 98, percentage: 8 },
-    { stars: 2, count: 32, percentage: 3 },
-    { stars: 1, count: 14, percentage: 1 }
-  ];
-
-  const filteredReviews = selectedRating === 'all' 
-    ? reviews 
-    : reviews.filter(review => review.rating === parseInt(selectedRating));
+  const filteredReviews =
+    selectedRating === "all"
+      ? reviews
+      : reviews.filter((review) => review.rating === parseInt(selectedRating));
+  const displayedReviews = filteredReviews.slice(0, visibleReviews);
+  const hasMoreReviews = visibleReviews < filteredReviews.length;
+    const handleShowMore = () => {
+    setIsLoading(true);
+    
+    // Simulate loading delay
+    setTimeout(() => {
+      setVisibleReviews(prev => Math.min(prev + 3, filteredReviews.length));
+      setIsLoading(false);
+    }, 800);
+  };
 
   const handleSubmitReview = async () => {
     if (!userRating || !reviewText.trim()) {
-      alert('Please provide both a rating and review text');
+      alert("Please provide both a rating and review text");
       return;
     }
 
     setIsSubmitting(true);
-    
+
     // Simulate API call
     setTimeout(() => {
-      alert('Review submitted successfully!');
+      alert("Review submitted successfully!");
       setUserRating(0);
-      setReviewText('');
+      setReviewText("");
       setIsSubmitting(false);
     }, 1000);
   };
 
+  // Reset visible reviews when filter changes
+  React.useEffect(() => {
+    setVisibleReviews(3);
+  }, [selectedRating]);
+
   return (
     <div className="student-reviews">
-      <div >
+      <div>
         {/* Header Section */}
         <div className="reviews-header">
           <div className="reviews-title-section">
@@ -79,22 +69,27 @@ const Review = () =>{
                 <span className="rating-number">4.9</span>
                 <div className="rating-stars">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={20} fill="currentColor" className="star-filled" />
+                    <Star
+                      key={i}
+                      size={20}
+                      fill="currentColor"
+                      className="star-filled"
+                    />
                   ))}
                 </div>
                 <span className="total-reviews">1,234 reviews</span>
               </div>
             </div>
           </div>
-          
+
           {/* Rating Distribution */}
           <div className="rating-distribution">
             {ratingDistribution.map((item) => (
               <div key={item.stars} className="rating-row">
                 <span className="rating-label">{item.stars} stars</span>
                 <div className="rating-bar">
-                  <div 
-                    className="rating-fill" 
+                  <div
+                    className="rating-fill"
                     style={{ width: `${item.percentage}%` }}
                   ></div>
                 </div>
@@ -107,7 +102,7 @@ const Review = () =>{
         {/* Add Review Section */}
         <div className="add-review-section">
           <h4 className="add-review-title">Share your experience</h4>
-          
+
           <div className="rating-input">
             <span className="rating-label">Your rating:</span>
             <div className="interactive-stars">
@@ -115,7 +110,9 @@ const Review = () =>{
                 <Star
                   key={i}
                   size={24}
-                  className={`interactive-star ${i < (hoverRating || userRating) ? 'filled' : ''}`}
+                  className={`interactive-star ${
+                    i < (hoverRating || userRating) ? "filled" : ""
+                  }`}
                   onMouseEnter={() => setHoverRating(i + 1)}
                   onMouseLeave={() => setHoverRating(0)}
                   onClick={() => setUserRating(i + 1)}
@@ -136,13 +133,13 @@ const Review = () =>{
               <span className="character-count">
                 {reviewText.length}/500 characters
               </span>
-              <button 
+              <button
                 className="submit-review-btn"
                 onClick={handleSubmitReview}
                 disabled={isSubmitting || !userRating || !reviewText.trim()}
               >
                 <Send size={18} />
-                {isSubmitting ? 'Submitting...' : 'Submit Review'}
+                {isSubmitting ? "Submitting..." : "Submit Review"}
               </button>
             </div>
           </div>
@@ -151,16 +148,20 @@ const Review = () =>{
         {/* Filter Section */}
         <div className="reviews-filter">
           <div className="filter-buttons">
-            <button 
-              className={`filter-btn ${selectedRating === 'all' ? 'active' : ''}`}
-              onClick={() => setSelectedRating('all')}
+            <button
+              className={`filter-btn ${
+                selectedRating === "all" ? "active" : ""
+              }`}
+              onClick={() => setSelectedRating("all")}
             >
               All Reviews
             </button>
-            {[5, 4, 3, 2, 1].map(rating => (
+            {[5, 4, 3, 2, 1].map((rating) => (
               <button
                 key={rating}
-                className={`filter-btn ${selectedRating === rating.toString() ? 'active' : ''}`}
+                className={`filter-btn ${
+                  selectedRating === rating.toString() ? "active" : ""
+                }`}
                 onClick={() => setSelectedRating(rating.toString())}
               >
                 {rating} <Star size={14} fill="currentColor" />
@@ -175,28 +176,29 @@ const Review = () =>{
 
         {/* Reviews List */}
         <div className="reviews-list">
-          {filteredReviews.map(review => (
+          {displayedReviews.map((review) => (
             <div key={review.id} className="modern-review-card">
               <div className="review-header">
                 <div className="reviewer-info">
-                  <img 
-                    src={review.avatar} 
+                  <img
+                    src={review.avatar}
                     alt={review.name}
                     className="reviewer-avatar"
                   />
                   <div className="reviewer-details">
                     <div className="reviewer-name-section">
                       <span className="reviewer-name">{review.name}</span>
-                    
                     </div>
                     <div className="review-meta">
                       <div className="review-rating">
                         {[...Array(5)].map((_, i) => (
-                          <Star 
-                            key={i} 
-                            size={14} 
-                            fill={i < review.rating ? 'currentColor' : 'none'}
-                            className={i < review.rating ? 'star-filled' : 'star-empty'}
+                          <Star
+                            key={i}
+                            size={14}
+                            fill={i < review.rating ? "currentColor" : "none"}
+                            className={
+                              i < review.rating ? "star-filled" : "star-empty"
+                            }
                           />
                         ))}
                       </div>
@@ -208,11 +210,11 @@ const Review = () =>{
                   <MoreHorizontal size={16} />
                 </button>
               </div>
-              
+
               <div className="review-content">
                 <p>{review.comment}</p>
               </div>
-              
+
               <div className="review-actions">
                 <button className="helpful-btn">
                   <ThumbsUp size={16} />
@@ -228,13 +230,24 @@ const Review = () =>{
         </div>
 
         {/* Load More */}
-        <div className="load-more-section">
-          <button className="load-more-btn">
-            Show More Reviews
-          </button>
-        </div>
+        {hasMoreReviews && (
+          <div className="load-more-section">
+            <button 
+              className="load-more-btn"
+              onClick={handleShowMore}
+              disabled={isLoading}
+            >
+              {isLoading ? 'Loading...' : `Show More Reviews (${filteredReviews.length - visibleReviews} remaining)`}
+            </button>
+          </div>
+        )}
+        {!hasMoreReviews && filteredReviews.length > 3 && (
+          <div className="load-more-section">
+            <p className="all-reviews-loaded">All reviews loaded</p>
+          </div>
+        )}
       </div>
     </div>
   );
-}
-export default Review
+};
+export default Review;

@@ -1,56 +1,23 @@
 import React from "react";
 import { Check } from "lucide-react";
+import { featuresInDetail } from "../../utils/data";
 
 const Content = () => {
   return (
     <div className="course-content">
       <div className="mx-5 my-5">
         <h3 className="title is-4">What you'll learn</h3>
-        <div className="columns">
-          <div className="column">
-            <div className="content">
-              <div className="course-feature">
+        <div className="columns is-flex-wrap-wrap	">
+          {featuresInDetail.map((feature, idx) => (
+            <div className="column is-half " key={idx}>
+              <div className="">
                 <span className="icon has-text-success">
                   <Check size={16} />
                 </span>
-                <span>Build responsive websites with HTML and CSS</span>
-              </div>
-              <div className="course-feature">
-                <span className="icon has-text-success">
-                  <Check size={16} />
-                </span>
-                <span>Create dynamic web apps with React</span>
-              </div>
-              <div className="course-feature">
-                <span className="icon has-text-success">
-                  <Check size={16} />
-                </span>
-                <span>Master JavaScript ES6+ features</span>
+                <span>{feature}</span>
               </div>
             </div>
-          </div>
-          <div className="column">
-            <div className="content">
-              <div className="course-feature">
-                <span className="icon has-text-success">
-                  <Check size={16} />
-                </span>
-                <span>Build backend APIs with Node.js</span>
-              </div>
-              <div className="course-feature">
-                <span className="icon has-text-success">
-                  <Check size={16} />
-                </span>
-                <span>Work with MongoDB databases</span>
-              </div>
-              <div className="course-feature">
-                <span className="icon has-text-success">
-                  <Check size={16} />
-                </span>
-                <span>Deploy applications to production</span>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 

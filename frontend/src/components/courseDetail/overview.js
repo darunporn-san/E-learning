@@ -3,11 +3,6 @@ import {
   BookOpen,
   List,
   Star,
-  Download,
-  Play,
-  Clock,
-  CheckCircle,
-  Lock,
 } from "lucide-react";
 import CurriculumContent from "./curriculumContent";
 import Review from "./review";

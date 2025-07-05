@@ -115,7 +115,7 @@ const AllCourses = () => {
               <div className="field has-addons">
                 <div className="control has-icons-left is-expanded">
                   <input
-                    className="input is-large"
+                    className="input is-medium "
                     type="text"
                     placeholder="Search courses, instructors, or topics..."
                     value={searchTerm}
@@ -126,7 +126,7 @@ const AllCourses = () => {
                   </span>
                 </div>
                 <div className="control">
-                  <button className="button is-large is-primary">
+                  <button className="button is-medium  is-primary">
                     <span className="icon">
                       <Search size={20} />
                     </span>
@@ -137,7 +137,7 @@ const AllCourses = () => {
             <div className="column is-4">
               <div className="field">
                 <div className="control has-icons-left">
-                  <div className="select is-large is-fullwidth">
+                  <div className="select is-medium  is-fullwidth">
                     <select
                       value={sortBy}
                       onChange={(e) => setSortBy(e.target.value)}
@@ -199,7 +199,6 @@ const AllCourses = () => {
                 {displayedCourses.map((course) => (
                   <div className="column is-4" key={course.id}>
                     <CourseCard course={course}/>
-                    {/* <CourseCard key={course.id} course={course} /> */}
                   </div>
                 ))}
               </div>

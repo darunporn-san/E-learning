@@ -1,15 +1,14 @@
 import { features } from "../../utils/data";
+import TitleHome from "../shared/titleHome";
 const ReasonChoose = () => {
   return (
     <section id="about" className="section has-background-white	">
       <div className="container">
-        <div className="has-text-centered mb-6">
-          <h2 className="title is-2">Why Choose EduLearn?</h2>
-          <p className="subtitle is-4 has-text-grey">
-            We provide the best online learning experience with cutting-edge
-            features designed to help you succeed.
-          </p>
-        </div>
+        <TitleHome
+          title="Why Choose EduLearn?"
+          description="We provide the best online learning experience with cutting-edge
+            features designed to help you succeed."
+        />
 
         <div className="columns is-multiline">
           {features.map((feature, index) => {

@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Heart, Share2, Star, Play } from "lucide-react";
 import { useLocation } from "react-router-dom";
+import NameUser from "../shared/nameUser";
 
 const CourseInfo = () => {
-    const location = useLocation();
-
+  const location = useLocation();
+  const [instructor, setInstructor] = useState({
+    name: "John Doe",
+    role: "Senior Developer",
+    gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+  });
   const handleShare = async () => {
-   const fullUrl = `${window.location.origin}${location.pathname}`;
+    const fullUrl = `${window.location.origin}${location.pathname}`;
 
     try {
       await navigator.clipboard.writeText(fullUrl);
@@ -26,18 +31,7 @@ const CourseInfo = () => {
           Master HTML, CSS, JavaScript, React, Node.js, MongoDB, and more. Build
           real-world projects and launch your web development career.
         </p>
-
-        <div className="instructor-info">
-          <img
-            src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&dpr=1"
-            alt="John Doe"
-            className="instructor-avatar"
-          />
-          <div>
-            <p className="has-text-weight-semibold">John Doe</p>
-            <p className="is-size-7 has-text-grey">Senior Developer</p>
-          </div>
-        </div>
+        <NameUser user={instructor} />
 
         <div className="level is-mobile is-flex-wrap-wrap">
           <div className="level-left">
