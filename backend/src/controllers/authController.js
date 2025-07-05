@@ -2,12 +2,14 @@ const supabase = require("../config/supabaseClient");
 
 // Register
 exports.register = async (req, res) => {
-  const { email, password, firstName, lastName } = req.body;
-  console.log("register", email, password, firstName, lastName);
+  const { email, password, firstName, lastName, role } = req.body;
+  console.log("register", email, password, firstName, lastName, role);
+  const roleValue = role ?? 'student';
+
   const { data, error } = await supabase.auth.admin.createUser({
     email,
     password,
-    user_metadata: { firstName, lastName },
+    user_metadata: { firstName, lastName, role: roleValue},
     email_confirm: true,
   });
   if (error) {
@@ -43,8 +45,5 @@ exports.login = async (req, res) => {
   }
 };
 
-
 //Forget Password
-exports.forgetPassword = async(req,res)=>{
-  
-}
+exports.forgetPassword = async (req, res) => {};
