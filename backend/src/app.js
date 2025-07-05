@@ -3,7 +3,7 @@ const cors = require('cors')
 require('dotenv').config()
 
 const authRoutes = require('./routes/authRoutes')
-const allowedOrigins = ['https://e-learning-frontend.onrender.com', 'http://localhost:3000']; // Add your frontend's actual Render URL and any local dev URL
+const allowedOrigins = ['https://e-learning-frontend.onrender.com', 'http://localhost:3001']; // Add your frontend's actual Render URL and any local dev URL
 
 const app = express()
 app.use(express.json())
