@@ -8,7 +8,7 @@ const swaggerSpec = require('./swagger')
 
 const allowedOrigins = [
   'https://e-learning-frontend.onrender.com',
-  'https://e-learning-03pf.onrender.com', // ✅ ต้องมี domain Swagger UI ด้วย
+  'https://e-learning-03pf.onrender.com', 
   'http://localhost:3000',
   'http://localhost:3001',
 ];
