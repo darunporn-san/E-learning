@@ -3,7 +3,10 @@ const cors = require('cors')
 require('dotenv').config()
 
 const authRoutes = require('./routes/authRoutes')
-const allowedOrigins = ['https://e-learning-frontend.onrender.com', 'http://localhost:3000']; // Add your frontend's actual Render URL and any local dev URL
+const swaggerUi = require('swagger-ui-express')
+const swaggerSpec = require('./swagger')
+
+const allowedOrigins = ['https://e-learning-frontend.onrender.com', 'http://localhost:3001'];
 
 const app = express()
 app.use(express.json())
@@ -15,7 +18,13 @@ app.use(cors({
             callback(new Error('Not allowed by CORS'));
         }
     },
-    credentials: true // Important for cookies/sessions
-}));
+    credentials: true
+}))
+
+// Swagger route
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+
+// Routes
 app.use('/api/auth', authRoutes)
+
 module.exports = app
