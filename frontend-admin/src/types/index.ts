@@ -1,4 +1,7 @@
+import type { FC } from 'react';
 // types/index.ts
+
+
 export interface Course {
   id: string;
   title: string;
@@ -9,23 +12,25 @@ export interface Course {
   rating: number;
   students: number;
   duration: string;
-  lessons: number;
-  status: 'draft' | 'under_review' | 'published' | 'archived';
+  lessons?: number[]; // Assuming lessons can be an array of lesson IDs or a count
+  status: "draft" | "under_review" | "published" | "archived";
   thumbnail: string;
   description: string;
-  level: 'Beginner' | 'Intermediate' | 'Advanced';
+  level: "Beginner" | "Intermediate" | "Advanced";
   tags: string[];
   createdAt: string;
   updatedAt: string;
-  courseLessons: Lesson[];
+  courseLessons: ILesson[];
+  image: string;
+  progress: number; // Percentage of course completion
 }
 
-export interface Lesson {
+export interface ILesson {
   id: string;
   courseId: string;
   title: string;
   description: string;
-  type: 'video' | 'text' | 'quiz' | 'assignment';
+  type: "video" | "text" | "quiz" | "assignment";
   duration: string;
   order: number;
   isPublished: boolean;
@@ -37,7 +42,7 @@ export interface Lesson {
 export interface LessonResource {
   id: string;
   name: string;
-  type: 'pdf' | 'video' | 'link' | 'file';
+  type: "pdf" | "video" | "link" | "file";
   url: string;
   size?: string;
 }
@@ -48,11 +53,13 @@ export interface Instructor {
   email: string;
   avatar: string;
   bio: string;
-  courses: number;
   rating: number;
-  students: number;
-  specialties: string[];
-  status: 'active' | 'inactive';
+  students?: number;
+  specialties?: string[];
+  status?: "active" | "inactive";
+  totalStudents: number;
+  expertise: string[];
+  totalCourses: number;
 }
 
 export interface Student {
@@ -60,11 +67,12 @@ export interface Student {
   name: string;
   email: string;
   avatar: string;
-  enrolledCourses: number;
-  completedCourses: number;
+  enrolledCourses: number[] | string[]; // Array of course IDs
+  completedCourses: number[] | string[]; // Array of course IDs
   totalHours: number;
   joinedAt: string;
-  status: 'active' | 'inactive';
+  status: "active" | "inactive";
+  progress: Record<string, number>; // Course ID to progress percentage
 }
 
 export interface Category {
@@ -73,4 +81,15 @@ export interface Category {
   description: string;
   color: string;
   courseCount: number;
+}
+
+export interface IStat {
+  title: string;
+  value: string;
+  change?: {
+    value: number;
+    isPositive: boolean;
+  };
+icon: FC<{ className?: string }>;
+  color: string;
 }
